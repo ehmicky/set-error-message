@@ -27,3 +27,10 @@ test('Sets error stack', (t) => {
   t.true(error.stack.includes('two'))
   t.false(Object.getOwnPropertyDescriptor(error, 'stack').enumerable)
 })
+
+test('Does not set error stack if message has not changed', (t) => {
+  const error = new Error('one')
+  error.stack = 'two'
+  setErrorMessage(error, 'one')
+  t.is(error.stack, 'two')
+})
