@@ -6,14 +6,42 @@
 
 Properly update an error's message.
 
-Work in progress!
+In V8 (Chrome, Node.js, Deno, etc.),
+[`error.stack`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/stack)
+includes
+[`error.message`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/message).
+However, if `error.message` is modified, `error.stack` might not be updated and
+still contain the previous message.
 
-# Features
+This library fixes this by setting `error.message` while updating `error.stack`
+accordingly. This works on any JavaScript engines.
 
 # Example
 
+Without `set-error-message`:
+
+```js
+const error = new Error('one')
+console.log(error.message) // 'one'
+console.log(error.stack) // 'Error: one ...'
+
+error.message = 'two'
+console.log(error.message) // 'two'
+console.log(error.stack) // 'Error: one ...'
+```
+
+With `set-error-message`:
+
 ```js
 import setErrorMessage from 'set-error-message'
+
+const error = new Error('one')
+console.log(error.message) // 'one'
+console.log(error.stack) // 'Error: one ...'
+
+setErrorMessage(error, 'two')
+console.log(error.message) // 'two'
+console.log(error.stack) // 'Error: two ...'
 ```
 
 # Install
@@ -28,19 +56,20 @@ not `require()`.
 
 # API
 
-## setErrorMessage(value, options?)
+## setErrorMessage(error, newMessage, currentMessage?)
 
-`value` `any`\
-`options` [`Options?`](#options)\
-_Return value_: [`object`](#return-value)
+`error` `Error | any`\
+`newMessage` `string`\
+`currentMessage` `string?`\
+_Return value_: `Error`
 
-### Options
+Sets `error.message = newMessage`.
 
-Object with the following properties.
+Returns `error`. If `error` is not an `Error` instance, it is converted to one.
 
-### Return value
-
-Object with the following properties.
+If `error.stack` contains `currentMessage`, it is replaced by `newMessage`.
+`currentMessage` is the error message currently included in `error.stack`. It
+defaults to `error.message`, which is usually best.
 
 # Related projects
 
