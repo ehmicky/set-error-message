@@ -28,6 +28,16 @@ const EXAMPLE_MESSAGE = 'set-error-message test message'
 const SHOULD_UPDATE_STACK = stackIncludesMessage()
 
 const getStack = function (error, newMessage, currentMessage) {
+  return currentMessage !== '' && error.stack.includes(currentMessage)
+    ? replaceMessage(error, newMessage, currentMessage)
+    : insertMessage(error, newMessage, currentMessage)
+}
+
+const replaceMessage = function (error, newMessage, currentMessage) {
+  return error.stack
+}
+
+const insertMessage = function (error, newMessage, currentMessage) {
   return error.stack
 }
 
