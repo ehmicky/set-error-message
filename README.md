@@ -13,8 +13,8 @@ includes
 However, if `error.message` is modified, `error.stack` might not be updated and
 still contain the previous message.
 
-This library fixes this by setting `error.message` while updating `error.stack`
-accordingly. This works on any JavaScript engines.
+This library fixes it by setting `error.message` while updating `error.stack`
+accordingly. This works on any JavaScript engine.
 
 # Example
 
