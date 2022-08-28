@@ -1,6 +1,7 @@
 import normalizeException from 'normalize-exception'
 
 import { normalizeArgs } from './args.js'
+import { getStack } from './stack.js'
 
 export default function setErrorMessage(error, newMessage, currentMessage) {
   const errorA = normalizeException(error)
@@ -10,6 +11,8 @@ export default function setErrorMessage(error, newMessage, currentMessage) {
   return errorA
 }
 
+// In some JavaScript engines, `error.stack` includes `error.message`, but is
+// not updated when `error.message` is modified. This fixes this.
 const updateStack = function (error, newMessage, currentMessage) {
   if (!SHOULD_UPDATE_STACK || newMessage === currentMessage) {
     return
@@ -26,20 +29,6 @@ const stackIncludesMessage = function () {
 
 const EXAMPLE_MESSAGE = 'set-error-message test message'
 const SHOULD_UPDATE_STACK = stackIncludesMessage()
-
-const getStack = function (error, newMessage, currentMessage) {
-  return currentMessage !== '' && error.stack.includes(currentMessage)
-    ? replaceMessage(error, newMessage, currentMessage)
-    : insertMessage(error, newMessage, currentMessage)
-}
-
-const replaceMessage = function (error, newMessage, currentMessage) {
-  return error.stack
-}
-
-const insertMessage = function (error, newMessage, currentMessage) {
-  return error.stack
-}
 
 const setNonEnumProp = function (error, propName, value) {
   // eslint-disable-next-line fp/no-mutating-methods
