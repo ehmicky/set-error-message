@@ -15,7 +15,7 @@ export default function setErrorMessage(error, newMessage, currentMessage) {
 // In some JavaScript engines, `error.stack` includes `error.message`, but is
 // not updated when `error.message` is modified. This fixes this.
 const updateStack = function (error, newMessage, currentMessage) {
-  if (!SHOULD_UPDATE_STACK || newMessage === currentMessage) {
+  if (!stackIncludesMessage() || newMessage === currentMessage) {
     return
   }
 
@@ -30,7 +30,6 @@ const stackIncludesMessage = function () {
 }
 
 const EXAMPLE_MESSAGE = 'set-error-message test message'
-const SHOULD_UPDATE_STACK = stackIncludesMessage()
 
 const setNonEnumProp = function (error, propName, value) {
   // eslint-disable-next-line fp/no-mutating-methods

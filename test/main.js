@@ -34,3 +34,20 @@ test('Does not set error stack if message has not changed', (t) => {
   setErrorMessage(error, 'one')
   t.is(error.stack, 'two')
 })
+
+each(['one', undefined], ({ title }, stack) => {
+  test.serial(
+    `Only update error stack if engine includes message in it | ${title}`,
+    (t) => {
+      // eslint-disable-next-line fp/no-mutation
+      Error.prepareStackTrace = () => stack
+
+      const error = new Error('one')
+      setErrorMessage(error, 'two')
+      t.false(error.stack.includes('two'))
+
+      // eslint-disable-next-line fp/no-delete
+      delete Error.prepareStackTrace
+    },
+  )
+})
