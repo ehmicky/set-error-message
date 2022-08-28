@@ -25,7 +25,8 @@ const updateStack = function (error, newMessage, currentMessage) {
 
 // Only V8 includes `error.message` in `error.stack`
 const stackIncludesMessage = function () {
-  return new Error(EXAMPLE_MESSAGE).stack.includes(EXAMPLE_MESSAGE)
+  const { stack } = new Error(EXAMPLE_MESSAGE)
+  return typeof stack === 'string' && stack.includes(EXAMPLE_MESSAGE)
 }
 
 const EXAMPLE_MESSAGE = 'set-error-message test message'
