@@ -32,9 +32,14 @@ const getReplacers = function (name, newMessage, currentMessage) {
 }
 
 const insertMessage = function (name, stack, newMessage) {
-  const errorName = `${name}: `
-  const newMessageA = `${newMessage.trimEnd()}\n`
-  return stack.startsWith(errorName)
-    ? stack.replace(errorName, `${errorName}${newMessageA}`)
-    : `${errorName}${newMessageA}${stack}`
+  const nameAndColon = `${name}: `
+  const newMessageA = newMessage.trimEnd()
+
+  if (stack === name || stack.startsWith(`${name}\n`)) {
+    return stack.replace(name, `${nameAndColon}${newMessageA}`)
+  }
+
+  return stack.startsWith(nameAndColon)
+    ? stack.replace(nameAndColon, `${nameAndColon}${newMessageA}\n`)
+    : `${nameAndColon}${newMessageA}\n${stack}`
 }
