@@ -3,6 +3,7 @@ import normalizeException from 'normalize-exception'
 import { normalizeArgs } from './args.js'
 import { getStack } from './stack.js'
 
+// Properly update an error's message
 export default function setErrorMessage(error, newMessage, currentMessage) {
   const errorA = normalizeException(error)
   const currentMessageA = normalizeArgs(errorA, newMessage, currentMessage)
