@@ -1,4 +1,4 @@
-// Normalize arguments
+// Normalize and validate arguments
 export const normalizeArgs = function (
   error,
   newMessage,
