@@ -1,3 +1,9 @@
+# 1.2.0
+
+## Features
+
+- Improve handling empty error messages
+
 # 1.1.0
 
 ## Features
