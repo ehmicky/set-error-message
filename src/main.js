@@ -35,7 +35,7 @@ const setNonEnumProp = function (error, propName, value) {
   // eslint-disable-next-line fp/no-mutating-methods
   Object.defineProperty(error, propName, {
     value,
-    enumerable: true,
+    enumerable: false,
     writable: true,
     configurable: true,
   })
