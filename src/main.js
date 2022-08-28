@@ -10,22 +10,13 @@ export default function setErrorMessage(error, newMessage, currentMessage) {
   return errorA
 }
 
-const setNonEnumProp = function (error, propName, value) {
-  // eslint-disable-next-line fp/no-mutating-methods
-  Object.defineProperty(error, propName, {
-    value,
-    enumerable: true,
-    writable: true,
-    configurable: true,
-  })
-}
-
 const updateStack = function (error, newMessage, currentMessage) {
-  if (!SHOULD_UPDATE_STACK) {
+  if (!SHOULD_UPDATE_STACK || newMessage === currentMessage) {
     return
   }
 
-  return error
+  const stack = getStack(error, newMessage, currentMessage)
+  setNonEnumProp(error, 'stack', stack)
 }
 
 // Only V8 includes `error.message` in `error.stack`
@@ -35,3 +26,17 @@ const stackIncludesMessage = function () {
 
 const EXAMPLE_MESSAGE = 'set-error-message test message'
 const SHOULD_UPDATE_STACK = stackIncludesMessage()
+
+const getStack = function (error, newMessage, currentMessage) {
+  return error.stack
+}
+
+const setNonEnumProp = function (error, propName, value) {
+  // eslint-disable-next-line fp/no-mutating-methods
+  Object.defineProperty(error, propName, {
+    value,
+    enumerable: true,
+    writable: true,
+    configurable: true,
+  })
+}
