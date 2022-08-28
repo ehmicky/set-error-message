@@ -20,3 +20,21 @@ each(
     })
   },
 )
+
+each(['', 'three'], ({ title }, message) => {
+  test(`Insert if current message cannot be found | ${title}`, (t) => {
+    const error = new Error('one')
+    error.message = message
+    error.stack = 'one\nstackLines'
+    setErrorMessage(error, 'two\n\n')
+    t.is(error.stack, 'Error: two\none\nstackLines')
+  })
+})
+
+test('Insertion tries to find error name', (t) => {
+  const error = new Error('one')
+  error.message = ''
+  error.stack = 'Error: one\nstackLines'
+  setErrorMessage(error, 'two\n\n')
+  t.is(error.stack, 'Error: two\none\nstackLines')
+})
