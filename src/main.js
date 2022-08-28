@@ -15,7 +15,7 @@ export default function setErrorMessage(error, newMessage, currentMessage) {
 // In some JavaScript engines, `error.stack` includes `error.message`, but is
 // not updated when `error.message` is modified. This fixes this.
 const updateStack = function (error, newMessage, currentMessage) {
-  if (!stackIncludesMessage() || newMessage === currentMessage) {
+  if (newMessage === currentMessage || !stackIncludesMessage()) {
     return
   }
 

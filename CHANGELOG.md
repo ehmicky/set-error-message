@@ -1,3 +1,9 @@
+# 1.1.0
+
+## Features
+
+- Improve performance
+
 # 1.0.2
 
 ## Bug fixes
