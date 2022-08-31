@@ -85,6 +85,8 @@ defaults to `error.message`, which is usually best.
   Normalize exceptions/errors
 - [`merge-error-cause`](https://github.com/ehmicky/merge-error-cause): Merge an
   error with its `cause`
+- [`set-error-class`](https://github.com/ehmicky/set-error-class): Properly
+  update an error's class
 - [`set-error-props`](https://github.com/ehmicky/set-error-props): Properly
   update an error's properties
 - [`error-cause-polyfill`](https://github.com/ehmicky/error-cause-polyfill):
