@@ -2,7 +2,6 @@ import test from 'ava'
 import setErrorMessage from 'set-error-message'
 import { each } from 'test-each'
 
-// eslint-disable-next-line unicorn/no-null
 each([undefined, null, '', {}], ({ title }, notAnError) => {
   test(`Normalizes the error | ${title}`, (t) => {
     t.true(setErrorMessage(notAnError, '') instanceof Error)

@@ -2,7 +2,6 @@ import test from 'ava'
 import setErrorMessage from 'set-error-message'
 import { each } from 'test-each'
 
-// eslint-disable-next-line unicorn/no-null
 const NOT_A_MESSAGE = [null, true]
 
 each([...NOT_A_MESSAGE, undefined], ({ title }, notAMessage) => {
