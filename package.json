@@ -34,7 +34,7 @@
     "stacktraces",
     "typescript"
   ],
-  "license": "Apache-2.0",
+  "license": "MIT",
   "homepage": "https://www.github.com/ehmicky/set-error-message",
   "repository": "ehmicky/set-error-message",
   "bugs": {
