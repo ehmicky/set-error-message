@@ -1,3 +1,9 @@
+# 1.6.0
+
+## Documentation
+
+- Undocument third argument
+
 # 1.5.0
 
 ## Features

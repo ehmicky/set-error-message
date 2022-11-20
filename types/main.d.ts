@@ -6,10 +6,6 @@ type NormalizeError<ErrorArg> = ErrorArg extends Error ? ErrorArg : Error
  * Returns `error`. If `error` is not an `Error` in
  * stance, it is converted to one.
  *
- * If `error.stack` contains `currentMessage`, it is replaced by `newMessage`.
- * `currentMessage` is the error message currently included in `error.stack`. It
- * defaults to `error.message`, which is usually best.
- *
  * @example
  * ```js
  * const error = new Error('one')
@@ -24,5 +20,4 @@ type NormalizeError<ErrorArg> = ErrorArg extends Error ? ErrorArg : Error
 export default function setErrorMessage<ErrorArg>(
   error: ErrorArg,
   newMessage: string,
-  currentMessage?: string,
 ): NormalizeError<ErrorArg>

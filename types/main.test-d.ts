@@ -4,7 +4,7 @@ import setErrorMessage from 'set-error-message'
 
 const error = new Error('test')
 expectAssignable<Error>(setErrorMessage(error, ''))
-setErrorMessage(error, '', '')
+setErrorMessage(error, '')
 
 expectError(setErrorMessage(error))
 expectError(setErrorMessage(error, true))

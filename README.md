@@ -60,20 +60,15 @@ not `require()`.
 
 # API
 
-## setErrorMessage(error, newMessage, currentMessage?)
+## setErrorMessage(error, newMessage)
 
 `error` `Error | any`\
 `newMessage` `string`\
-`currentMessage` `string?`\
 _Return value_: `Error`
 
 Sets `error.message = newMessage`.
 
 Returns `error`. If `error` is not an `Error` instance, it is converted to one.
-
-If `error.stack` contains `currentMessage`, it is replaced by `newMessage`.
-`currentMessage` is the error message currently included in `error.stack`. It
-defaults to `error.message`, which is usually best.
 
 # Related projects
 

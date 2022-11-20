@@ -1,4 +1,5 @@
-// Normalize and validate arguments
+// Normalize and validate arguments.
+// `currentMessage` is undocumented and mostly meant for `merge-error-cause`.
 export const normalizeArgs = function (
   error,
   newMessage,
