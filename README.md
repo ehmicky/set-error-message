@@ -88,6 +88,8 @@ Returns `error`. If `error` is not an `Error` instance, it is converted to one.
   error with its `cause`
 - [`set-error-class`](https://github.com/ehmicky/set-error-class): Properly
   update an error's class
+- [`wrap-error-message`](https://github.com/ehmicky/wrap-error-message):
+  Properly wrap an error's message
 - [`set-error-props`](https://github.com/ehmicky/set-error-props): Properly
   update an error's properties
 - [`set-error-stack`](https://github.com/ehmicky/set-error-stack): Properly
