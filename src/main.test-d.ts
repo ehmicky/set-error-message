@@ -1,6 +1,6 @@
+import setErrorMessage from 'set-error-message'
 import { expectType, expectAssignable } from 'tsd'
 
-import setErrorMessage from 'set-error-message'
 
 const error = new Error('test')
 expectAssignable<Error>(setErrorMessage(error, ''))
