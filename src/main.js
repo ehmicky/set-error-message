@@ -4,7 +4,7 @@ import { normalizeArgs } from './args.js'
 import { getStack } from './stack.js'
 
 // Properly update an error's message
-export default function setErrorMessage(error, newMessage, currentMessage) {
+const setErrorMessage = (error, newMessage, currentMessage) => {
   const errorA = normalizeException(error)
   const currentMessageA = normalizeArgs(errorA, newMessage, currentMessage)
   setNonEnumProp(errorA, 'message', newMessage)
@@ -12,9 +12,11 @@ export default function setErrorMessage(error, newMessage, currentMessage) {
   return errorA
 }
 
+export default setErrorMessage
+
 // In some JavaScript engines, `error.stack` includes `error.message`, but is
 // not updated when `error.message` is modified. This fixes this.
-const updateStack = function (error, newMessage, currentMessage) {
+const updateStack = (error, newMessage, currentMessage) => {
   if (newMessage === currentMessage || !stackIncludesMessage()) {
     return
   }
@@ -24,14 +26,14 @@ const updateStack = function (error, newMessage, currentMessage) {
 }
 
 // Only V8 includes `error.message` in `error.stack`
-const stackIncludesMessage = function () {
+const stackIncludesMessage = () => {
   const { stack } = new Error(EXAMPLE_MESSAGE)
   return typeof stack === 'string' && stack.includes(EXAMPLE_MESSAGE)
 }
 
 const EXAMPLE_MESSAGE = 'set-error-message test message'
 
-const setNonEnumProp = function (error, propName, value) {
+const setNonEnumProp = (error, propName, value) => {
   // eslint-disable-next-line fp/no-mutating-methods
   Object.defineProperty(error, propName, {
     value,
