@@ -34,6 +34,7 @@ const stackIncludesMessage = () => {
 const EXAMPLE_MESSAGE = 'set-error-message test message'
 
 const setNonEnumProp = (error, propName, value) => {
+  // eslint-disable-next-line fp/no-mutating-methods
   Object.defineProperty(error, propName, {
     value,
     enumerable: false,
